@@ -23,8 +23,8 @@ class _HomeState extends State<Home> {
         buildColumn1(), //Construction de la première colonne
         buildColumn2(), //Construction de la deuxième colonne
         buildColumn3(), //Construction de la troisième colonne
-        // buildColumn4(), //Construction de la quatrième colonne
-        // buildColumn5(), //Construction de la cinquième colonne
+        buildColumn4(), //Construction de la quatrième colonne
+        buildColumn5(), //Construction de la cinquième colonne
         // buildColumn6(), //Construction de la sixième colonne
       ],
     )
@@ -189,13 +189,15 @@ Widget buildCardColumn3(int i) {
     productWidgetTextToCard('Camping')
   ];
 
-  return Padding(
+  return
+      //Début de padding
+      Padding(
     padding: const EdgeInsets.symmetric(horizontal: 3.0),
+    // Début de la carte
     child: Card(
       color: Color(0xfffffffff),
-      // Début de la carte
       child: SizedBox(
-        width: 155,
+        width: 155, //Largeur de la boxe
         child: Column(
           // Début de la colonne
           children: [
@@ -233,17 +235,109 @@ Widget buildCardColumn3(int i) {
 //Début grand IV
 
 //Début de la construction de la 4eme colonne
-Widget buildColumn() {
+Widget buildColumn4() {
   return
       //Début du Padding
-      Padding(
-          padding: const EdgeInsets.only(top: 10),
+      const Padding(
+          padding: EdgeInsets.all(30.0),
           child:
               //Début Row
-              Row()
+              Row(
+            /*Composé de 2 enfants */
+            children: [
+              //Début du texte 1
+              Text(
+                'Top sights',
+                //Début du style
+                style: TextStyle(
+                  fontSize: 19, //taille du texte
+                  fontWeight: FontWeight.bold, //Poids du texte
+                ),
+                //Fin du style
+              ),
+              //Fin du texte 1
+              Spacer(), //Espaceur
+              //Début du texte 2
+              Text(
+                'See all',
+                //Début du style
+                style: TextStyle(
+                  fontSize: 18, //couleur du texte
+                  color: Color(0xff00b0a0), //Couleur de texte
+                ),
+                //Fin du style
+              )
+              //Fin du texte 2
+            ],
+          )
           //Fin du Row
           );
   //Fin du Padding
 }
-//Fin du constructeur de la 4eme colonne 
+//Fin du constructeur de la 4eme colonne
 //Fin grand IV
+
+//Debut grand V
+//Début de la colonne 5
+Widget buildColumn5() {
+  return
+      //Debut du padding
+      Padding(
+    padding: const EdgeInsets.all(30),
+    child: Row(
+      /*Composé de 2enfant*/
+      children: [
+        buildCardColumn5(0), //Constructeur de card
+        buildCardColumn5(1), //Constructeur de card
+      ],
+    ),
+  );
+  //Fin du padding
+}
+
+//Fin de la colonne 5
+//Debut du constructeur des card
+Widget buildCardColumn5(int i) {
+  var imagesCardsColumn5 = [Image.network(''), Image.network('')];
+  return SingleChildScrollView(
+    scrollDirection: Axis.horizontal,
+    //Début du padding
+    child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        //Debut Card
+        child: Card(
+          ///Debut sizedBox
+          child: SizedBox(
+            //Début Column
+            child: Column(
+              /*Composé de 2 enfants*/
+              children: [
+                //Début sizedBox
+                SizedBox(
+                  width: 100, //Hauteur image
+                  height: 100, //Largeur image
+                  child: imagesCardsColumn5[i], //Image
+                ),
+                //Fin sizedBox
+                buildSecondChildCardColumn5(
+                    i) //Debut Constructeur  du 2eme enfant
+              ],
+            ),
+            //FinColomn
+          ),
+          //Fin sizedBox
+        )
+
+        //Fin Card
+        ),
+    //Fin du padding
+  );
+}
+//Fin du constructeur de card
+
+//Debut Constructeur  buildSecondChildCardColumn5
+Widget buildSecondChildCardColumn5(int i) {
+  return const Padding(padding: EdgeInsets.all(10));
+}
+//Fin constructeur buildSecondChildCardColumn5
+//Fin grand V
