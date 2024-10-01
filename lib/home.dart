@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,28 +12,56 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body:
-            //Début du body
-            //Debut de la partie Scrollable
-            SingleChildScrollView(
-                child: //Debut de la colonne principale de la page home
-                    Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      /*Sera composée de 6 enfants */
-      children: [
-        buildColumn1(), //Construction de la première colonne
-        buildColumn2(), //Construction de la deuxième colonne
-        buildColumn3(), //Construction de la troisième colonne
-        buildColumn4(), //Construction de la quatrième colonne
-        buildColumn5(), //Construction de la cinquième colonne
-        // buildColumn6(), //Construction de la sixième colonne
-      ],
-    )
-                //Fin de la colonne principale de la page home
-                )
-        //Fin de la partie scrollable
-        //Fin du body
-        );
+      body:
+          //Début du body
+          //Debut de la partie Scrollable
+          SingleChildScrollView(
+              child: //Debut de la colonne principale de la page home
+                  Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        /*Sera composée de 6 enfants */
+        children: [
+          buildColumn1(), //Construction de la première colonne
+          buildColumn2(), //Construction de la deuxième colonne
+          buildColumn3(), //Construction de la troisième colonne
+          buildColumn4(), //Construction de la quatrième colonne
+          buildColumn5(), //Construction de la cinquième colonne
+          buildColumn6(), //Construction de la sixième colonne
+        ],
+      )
+              //Fin de la colonne principale de la page home
+              )
+      //Fin de la partie scrollable
+      //Fin du body
+      //Debut du footer
+      ,
+      bottomNavigationBar: const GNav(
+        backgroundColor: Colors.white,
+        color: Colors.blueAccent,
+        activeColor: Colors.blue,
+        tabBackgroundColor: Colors.blueAccent,
+        gap: 15,
+        tabs: [
+          GButton(
+            icon: Icons.home,
+            text: 'Home',
+          ),
+          GButton(
+            icon: Icons.search,
+            text: 'Search',
+          ),
+          GButton(
+            icon: Icons.favorite,
+            text: 'Like',
+          ),
+          GButton(
+            icon: Icons.notification_add,
+            text: 'Notification',
+          )
+        ],
+      ),
+      //Fin du footer
+    );
     //Fin du Scaffold
   }
   //Fin du build de la page Home
@@ -240,7 +269,7 @@ Widget buildColumn4() {
   return
       //Début du Padding
       const Padding(
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(20.0),
           child:
               //Début Row
               Row(
@@ -303,15 +332,16 @@ Widget buildColumn5() {
 //Debut du constructeur des card
 Widget buildCardColumn5(int i) {
   var imagesCardsColumn5 = [
-    Image.network(
-        'https://th.bing.com/th/id/OIP.S6bO6XrYc467CsH91JtBjwHaEo?rs=1&pid=ImgDetMain'),
-    Image.network('')
+    Image.asset(
+      'asset/ulun.jpg',
+    ),
+    Image.network('uluwatu.jpeg')
   ];
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     //Début du padding
     child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         //Debut Card
         child: Card(
           ///Debut sizedBox
@@ -325,7 +355,7 @@ Widget buildCardColumn5(int i) {
                 //Début sizedBox
                 SizedBox(
                   width: 300, //Hauteur image
-                  height: 150, //Largeur image
+                  height: 200, //Largeur image
                   child: imagesCardsColumn5[i], //Image
                 ),
                 //Fin sizedBox
@@ -353,20 +383,24 @@ Widget buildSecondChildCardColumn5(int i) {
   return
       //Début du padding
       Padding(
-          padding: const EdgeInsets.all(50.0),
+          padding: const EdgeInsets.all(10.0),
           child: //Debut Colonne
               Column(
             /*Composé de 2 enfant */
             children: [
-              //Début du texte
-              Text(
-                TitreTextSecondChildColumn5[i],
-                //Début du style
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                //Fin du style
+              Padding(
+                padding: EdgeInsets.only(right: 105, bottom: 10),
+                child:
+                    //Début du texte
+                    Text(
+                  TitreTextSecondChildColumn5[i],
+                  //Début du style
+                  style: const TextStyle(
+                      fontSize: 17, fontWeight: FontWeight.bold),
+                  //Fin du style
+                ),
+                //Fin du texte,
               ),
-              //Fin du texte
               //Début du row
               Row(
                 /*Composé de 2enfants*/
@@ -390,7 +424,9 @@ Widget buildSecondChildCardColumn5(int i) {
                     ],
                   ),
                   //Fin du coté gauche
-                  //Spacer
+                  const SizedBox(
+                    width: 50,
+                  ),
                   //début du coté droit
                   Row(
                     /*Composé de 2 enfant*/
@@ -420,3 +456,21 @@ Widget buildSecondChildCardColumn5(int i) {
 }
 //Fin constructeur buildSecondChildCardColumn5
 //Fin grand V
+
+//Début du grand VI
+//Début du constructeur 6
+Widget buildColumn6() {
+  return const Padding(
+    padding: EdgeInsets.only(right: 200),
+    child: Text(
+      'Historical Gems',
+      style: TextStyle(
+        fontSize: 25, //Taille du texte
+        fontWeight: FontWeight.bold, //poids du texte
+      ),
+    ),
+  );
+}
+//Fin du constructeur 6
+//Fin du grand VI
+//fin
