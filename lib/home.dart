@@ -44,7 +44,8 @@ Widget buildColumn1() {
   return
       //Début du padding
       Padding(
-          padding: EdgeInsets.only(top: 50, left: 25, right: 25), //Padding
+          padding:
+              const EdgeInsets.only(top: 50, left: 25, right: 25), //Padding
           //Début du row de la première ligne
           child: Row(
             mainAxisAlignment:
@@ -284,12 +285,15 @@ Widget buildColumn5() {
       //Debut du padding
       Padding(
     padding: const EdgeInsets.all(30),
-    child: Row(
-      /*Composé de 2enfant*/
-      children: [
-        buildCardColumn5(0), //Constructeur de card
-        buildCardColumn5(1), //Constructeur de card
-      ],
+    child: SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        /*Composé de 2enfant*/
+        children: [
+          buildCardColumn5(0), //Constructeur de card
+          buildCardColumn5(1), //Constructeur de card
+        ],
+      ),
     ),
   );
   //Fin du padding
@@ -298,7 +302,11 @@ Widget buildColumn5() {
 //Fin de la colonne 5
 //Debut du constructeur des card
 Widget buildCardColumn5(int i) {
-  var imagesCardsColumn5 = [Image.network(''), Image.network('')];
+  var imagesCardsColumn5 = [
+    Image.network(
+        'https://th.bing.com/th/id/OIP.S6bO6XrYc467CsH91JtBjwHaEo?rs=1&pid=ImgDetMain'),
+    Image.network('')
+  ];
   return SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     //Début du padding
@@ -308,14 +316,16 @@ Widget buildCardColumn5(int i) {
         child: Card(
           ///Debut sizedBox
           child: SizedBox(
+            width: 300,
+            height: 300,
             //Début Column
             child: Column(
               /*Composé de 2 enfants*/
               children: [
                 //Début sizedBox
                 SizedBox(
-                  width: 100, //Hauteur image
-                  height: 100, //Largeur image
+                  width: 300, //Hauteur image
+                  height: 150, //Largeur image
                   child: imagesCardsColumn5[i], //Image
                 ),
                 //Fin sizedBox
@@ -337,7 +347,76 @@ Widget buildCardColumn5(int i) {
 
 //Debut Constructeur  buildSecondChildCardColumn5
 Widget buildSecondChildCardColumn5(int i) {
-  return const Padding(padding: EdgeInsets.all(10));
+  var TextLeftSideSecondChildColumn5 = ["4.5(1079)", '4.5(979)'];
+  var TitreTextSecondChildColumn5 = ["Ulun Danu Temple", "Uluwatu Temple"];
+  var TextRightSideSecondChildColumn5 = ["3.5km away", '3.5km away'];
+  return
+      //Début du padding
+      Padding(
+          padding: const EdgeInsets.all(50.0),
+          child: //Debut Colonne
+              Column(
+            /*Composé de 2 enfant */
+            children: [
+              //Début du texte
+              Text(
+                TitreTextSecondChildColumn5[i],
+                //Début du style
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                //Fin du style
+              ),
+              //Fin du texte
+              //Début du row
+              Row(
+                /*Composé de 2enfants*/
+                children: [
+                  //Coté left
+                  Row(
+                    /*Composé de 2 enfant*/
+                    children: [
+                      //Début du sizedBox
+                      const SizedBox(
+                        child: Icon(
+                          Icons.star, //Type icone
+                          color: Color.fromARGB(
+                              255, 189, 189, 38), //Couleur de l'icone
+                        ),
+                      ),
+                      //Fin du sizedBox
+                      //Debut du texteLeft
+                      Text(TextLeftSideSecondChildColumn5[i]),
+                      //Fin du texte
+                    ],
+                  ),
+                  //Fin du coté gauche
+                  //Spacer
+                  //début du coté droit
+                  Row(
+                    /*Composé de 2 enfant*/
+                    children: [
+                      //Début du sizedBox
+                      const SizedBox(
+                        child: Icon(
+                          Icons.car_repair, //Type icone
+                          color: Color.fromARGB(
+                              255, 167, 197, 225), //Couleur de l'icone
+                        ),
+                      ),
+                      //Fin du sizedBox
+                      //Debut du texteLeft
+                      Text(TextRightSideSecondChildColumn5[i]),
+                      //Fin du texte
+                    ],
+                  )
+                ],
+              )
+              //Fin du row
+            ],
+          )
+          //Fin de la colonne
+          );
+  //Fin du padding
 }
 //Fin constructeur buildSecondChildCardColumn5
 //Fin grand V
