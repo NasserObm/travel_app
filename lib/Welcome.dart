@@ -1,34 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/home.dart';
 
 //Page Welcome
 class Welcome extends StatelessWidget {
-  const Welcome({super.key});
+  const Welcome({super.key}); //constructeur de welcome
 
+  //réécriture de la méthode des StatelessWidget pour son fils
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body:
-            //Partie Scrollable de l'apk
-            SingleChildScrollView(
-                child:
-                    //Début du centreur globale
-                    Center(
-                        child: //Colonne principale de l'apk
-                            Column(
-      //Composé de trois enfants Texte, Image, Bouton
-      children: [
-        buildTextSection(), //Appel de la méthode de construction des texte
-        buildImageSection(), //Appel de la méthode de Construction de l'image
-        buildButtonSection() //Appel de la méthode de Construction du bouton
-      ],
-    ) //Fin de la colonne principale
-                        )
-                //Fin du centreur Total
-                )
-        //Fin de la partie Scrollable
-        );
+    return
+        //Début du Scaffold
+        Scaffold(
+            backgroundColor:
+                Color(0xffffffff), //Fond d'écran de la page Welcome
+            //Début  du body
+            body:
+                //Partie Scrollable de l'apk
+                SingleChildScrollView(
+                    child:
+                        //Début du centreur globale
+                        Center(
+                            child: //Colonne principale de l'apk
+                                Column(
+              //Composé de trois enfants Texte, Image, Bouton
+              children: [
+                buildTextSection(), //Appel de la méthode de construction des texte
+                buildImageSection(), //Appel de la méthode de Construction de l'image
+                buildButtonSection(
+                    context) //Appel de la méthode de Construction du bouton
+              ],
+            ) //Fin de la colonne principale
+                            )
+                    //Fin du centreur Total
+                    )
+            //Fin de la partie Scrollable
+            //Fin du body
+            );
+    //Fin du Scaffold
   }
 
+//Fin de la réécriture du build
   //Méthode de construction des Textes
   Widget buildTextSection() {
     return const Padding(
@@ -79,7 +90,7 @@ class Welcome extends StatelessWidget {
   //Fin de la méthode de construction de l'image
 
   //Début de la construction de la méthode du bouton
-  Widget buildButtonSection() {
+  Widget buildButtonSection(BuildContext context) {
     return
         //Début du padding du bouton
         Padding(
@@ -90,19 +101,35 @@ class Welcome extends StatelessWidget {
         //Début de l'action lors du pressement du bouton
         onPressed: () {
           // Action pour passer à la page suivante
+          // Naviguer vers la page Home
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Home()),
+          );
         }, //fin de l'action lors du pressement du bouton
         //Style du bouton
         style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+          padding: const EdgeInsets.symmetric(
+              horizontal: 50,
+              vertical: 15), //Padding appliqué sur les axes syméetrique
+          minimumSize: const Size(50, 70),
+          backgroundColor: Color.fromARGB(255, 80, 148, 216),
+          //Modification des bords du bouton
           shape: RoundedRectangleBorder(
             borderRadius:
-                BorderRadius.circular(30), //Bordure arrondie du bouton
+                BorderRadius.circular(10), //Bordure arrondie du bouton
           ),
+          //Fin des modifications des bords du bouton
         ), //Fin du style du bouton
         //Début du texte dans le bouton
         child: const Text(
           'Explore',
-          style: TextStyle(fontSize: 18),
+          //Début du style du texte des boutons
+          style: TextStyle(
+            fontSize: 18, //Taille du texte
+            color: Color(0xfffffffffff), //Couleur du texte dans le bouton
+          ),
+          //Fin du style du texte du bouton
         ),
         //Fin du texte dans les boutons
       ),
@@ -112,3 +139,4 @@ class Welcome extends StatelessWidget {
   }
   //Fin de la construction de la méthode du bouton
 }
+//fin de la page Welcome

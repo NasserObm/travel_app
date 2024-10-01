@@ -11,6 +11,7 @@ class Travel extends StatelessWidget {
     return const MaterialApp(
       title: 'Travel',
       home: Welcome(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
